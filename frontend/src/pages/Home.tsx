@@ -26,13 +26,34 @@ const Home = () => {
         </Button>
       </Box>
 
-      <Grid container spacing={4}>
+      <Grid container spacing={4} alignItems="stretch">
+        {/* Skills Card */}
         <Grid size={{ xs: 12, md: 4 }}>
-          <Link to="/skills" style={{ textDecoration: "none" }}>
-            <Card variant="outlined" sx={{ cursor: "pointer" }}>
-              <CardContent>
-                <Typography variant="h6">Enter Skills & Interests</Typography>
-                <Typography variant="body2">
+          <Link
+            to="/skills"
+            style={{
+              textDecoration: "none",
+              display: "block",
+              height: "100%",
+            }}
+          >
+            <Card
+              variant="outlined"
+              sx={{
+                cursor: "pointer",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "text.primary", fontWeight: 600 }}
+                >
+                  Enter Skills & Interests
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Use a guided form to input your skills.
                 </Typography>
               </CardContent>
@@ -40,12 +61,33 @@ const Home = () => {
           </Link>
         </Grid>
 
+        {/* Upload CV Card */}
         <Grid size={{ xs: 12, md: 4 }}>
-          <Link to="/upload-cv" style={{ textDecoration: "none" }}>
-            <Card variant="outlined" sx={{ cursor: "pointer" }}>
-              <CardContent>
-                <Typography variant="h6">Upload Your CV</Typography>
-                <Typography variant="body2">
+          <Link
+            to="/upload-cv"
+            style={{
+              textDecoration: "none",
+              display: "block",
+              height: "100%",
+            }}
+          >
+            <Card
+              variant="outlined"
+              sx={{
+                cursor: "pointer",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "text.primary", fontWeight: 600 }}
+                >
+                  Upload Your CV
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Upload your CV for parsing and analysis.
                 </Typography>
               </CardContent>
@@ -53,11 +95,24 @@ const Home = () => {
           </Link>
         </Grid>
 
+        {/* Recommendations Card */}
         <Grid size={{ xs: 12, md: 4 }}>
-          <Card variant="outlined">
-            <CardContent>
-              <Typography variant="h6">Career Recommendations</Typography>
-              <Typography variant="body2">
+          <Card
+            variant="outlined"
+            sx={{
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                sx={{ color: "text.primary", fontWeight: 600 }}
+              >
+                Career Recommendations
+              </Typography>
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 Receive personalized suggestions.
               </Typography>
             </CardContent>
