@@ -1,6 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Box } from "@mui/material";
-import { Home, SkillsPage, UploadCVPage } from "./pages";
+import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material";
+import {
+  Home,
+  LoginPage,
+  RegisterPage,
+  SkillsPage,
+  UploadCVPage,
+} from "./pages";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -63,6 +69,14 @@ function App() {
               <Typography variant="h6" sx={{ color: "#ddd" }}>
                 Welcome, Guest
               </Typography>
+              <Box>
+                <Button component={Link} to="/login" sx={{ color: "#ddd" }}>
+                  Login
+                </Button>
+                <Button component={Link} to="/register" sx={{ color: "#ddd" }}>
+                  Register
+                </Button>
+              </Box>
             </Toolbar>
           </AppBar>
 
@@ -72,6 +86,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/skills" element={<SkillsPage />} />
               <Route path="/upload-cv" element={<UploadCVPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
             </Routes>
           </Box>
 

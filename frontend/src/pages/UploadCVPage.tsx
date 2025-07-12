@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Box, Typography, Button } from "@mui/material";
+import { whiteTheme } from "../assets/constants";
 
 const UploadCVPage = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -12,18 +13,20 @@ const UploadCVPage = () => {
     e.preventDefault();
     if (!file) return alert("Please select a file!");
     alert(`Uploaded file: ${file.name}`);
-    // Ovde kasnije dodaješ API call za upload
+    // late add API call za upload
   };
 
   return (
     <Container maxWidth="md" sx={{ my: 6 }}>
       <Box component="form" onSubmit={handleSubmit}>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom sx={whiteTheme}>
           Upload Your CV
         </Typography>
 
-        <Button variant="outlined" component="label">
-          {file ? file.name : "Select PDF file"}
+        <Button variant="outlined" component="label" sx={whiteTheme}>
+          <Typography color="inherit" variant="h5" gutterBottom>
+            {file ? file.name : "Select PDF file"}
+          </Typography>
           <input type="file" hidden accept=".pdf" onChange={handleFileChange} />
         </Button>
 

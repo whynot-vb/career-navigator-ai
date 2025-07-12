@@ -2,11 +2,32 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import validator from "validator";
+
+const PASSWORD_REGEX = /^(?=.*[!@#$%^&*()_\-+=\[\]{};:'"\\|,.<>\/?]).{8,}$/;
 
 export const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
+  console.log("🔐 [REGISTER] body:", req.body);
 
+  if (!email || !validator.isEmail(email)) {
+    return res.status(400).json({ message: "Invalid email address." });
+  }
+
+  if (!password || !PASSWORD_REGEX.test(password)) {
+    return res.status(400).json({
+      message:
+        "Password must be at least 8 characters long and include at least one special character.",
+    });
+  }
+
+  const exists = await User.findOne({ email });
+  if (exists) {
+    return res.status(400).json({ message: "Email already in use." });
+  }
+
+  // 4) Hash i čuvanje
+  const hashedPassword = await bcrypt.hash(password, 10);
   const user = new User({ email, password: hashedPassword });
   await user.save();
 
