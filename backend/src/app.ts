@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes";
+import cvRoutes from "./routes/cvRoutes";
 
 dotenv.config();
 
@@ -17,5 +18,6 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/cv", cvRoutes);
 
 export default app;
