@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import { Container, Box, Typography, Button } from "@mui/material";
+import {
+  Container,
+  Box,
+  Typography,
+  Button,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import { whiteTheme } from "../assets/constants";
 
 const UploadCVPage = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [open, setOpen] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files ? e.target.files[0] : null);
@@ -11,9 +19,20 @@ const UploadCVPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) return alert("Please select a file!");
-    alert(`Uploaded file: ${file.name}`);
-    // late add API call za upload
+    if (!file) {
+      alert("Molim te izaberi PDF fajl!");
+      return;
+    }
+
+    // Show Notification
+    setOpen(true);
+
+    // TODO: Api call to upload the file
+  };
+
+  // Close the Snackbar after 3 seconds or when the user clicks x
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -25,7 +44,7 @@ const UploadCVPage = () => {
 
         <Button variant="outlined" component="label" sx={whiteTheme}>
           <Typography color="inherit" variant="h5" gutterBottom>
-            {file ? file.name : "Select PDF file"}
+            {file ? file.name : "Izaberi PDF fajl"}
           </Typography>
           <input type="file" hidden accept=".pdf" onChange={handleFileChange} />
         </Button>
@@ -36,6 +55,26 @@ const UploadCVPage = () => {
           </Button>
         </Box>
       </Box>
+
+      <Snackbar
+        open={open}
+        autoHideDuration={3000} // disapear after 3 seconds
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }} // top center
+      >
+        <Alert
+          severity="info"
+          variant="filled"
+          onClose={handleClose}
+          sx={{
+            width: "100%",
+            maxHeight: "100px",
+            alignItems: "center",
+          }}
+        >
+          Učitavanje u toku… Kada se završi, moći ćete da dobijete preporuke.
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

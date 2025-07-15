@@ -3,7 +3,6 @@ import CVData from "../models/CVData";
 import pdfParse from "pdf-parse";
 
 export const uploadCV = async (req: Request, res: Response) => {
-  console.log("📄 [UPLOAD CV] file:", req);
   if (!req.file) return res.status(400).send("No file uploaded.");
   const userId = (req as any).user._id;
 

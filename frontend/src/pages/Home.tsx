@@ -11,12 +11,22 @@ import {
 
 const Home = () => {
   return (
-    <Container maxWidth="md" sx={{ flex: 1, mt: 6, mb: 6 }}>
+    <Container
+      maxWidth="md"
+      sx={{
+        flex: 1,
+        mt: 6,
+        mb: 6,
+        bgcolor: "transparent", // transparent background
+        position: "relative",
+        zIndex: 1,
+      }}
+    >
       <Box textAlign="center" mb={6}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom sx={{ color: "#ffffff" }}>
           Discover your ideal career path
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1" paragraph sx={{ color: "#f0f0f0" }}>
           Use AI to match your skills and experience with the best
           opportunities.
         </Typography>
@@ -43,6 +53,7 @@ const Home = () => {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
+                backgroundColor: "#ffffff", // ✅ white background
               }}
             >
               <CardContent sx={{ flexGrow: 1 }}>
@@ -77,6 +88,7 @@ const Home = () => {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
+                backgroundColor: "#ffffff", // ✅ white background
               }}
             >
               <CardContent sx={{ flexGrow: 1 }}>
@@ -102,6 +114,7 @@ const Home = () => {
               height: "100%",
               display: "flex",
               flexDirection: "column",
+              backgroundColor: "#ffffff", // ✅ white background
             }}
           >
             <CardContent sx={{ flexGrow: 1 }}>

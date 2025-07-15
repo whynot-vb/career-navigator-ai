@@ -8,6 +8,7 @@ import {
   UploadCVPage,
 } from "./pages";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import ParticlesBackground from "./components/ParticlesBackground"; // ✅ import
 
 const theme = createTheme({
   typography: {
@@ -40,19 +41,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        {/* Root with full-screen gradient */}
+        <ParticlesBackground /> ✅
         <Box
           display="flex"
           flexDirection="column"
           minHeight="100vh"
           sx={{
-            background:
-              "linear-gradient(135deg,rgb(86, 77, 127) 0%,rgb(113, 86, 164) 50%,rgb(147, 203, 243) 100%)",
-            backgroundRepeat: "no-repeat",
-            backgroundAttachment: "fixed",
+            backgroundColor: "transparent", // Pozadina sada transparentna zbog Particles
           }}
         >
-          {/* AppBar sada ima tamnu pozadinu ista kao gornji deo gradijenta */}
           <AppBar
             position="static"
             sx={{ backgroundColor: "#1f1c2c", boxShadow: "none" }}
@@ -80,7 +77,6 @@ function App() {
             </Toolbar>
           </AppBar>
 
-          {/* Glavni sadržaj */}
           <Box sx={{ flex: 1 }}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -91,12 +87,12 @@ function App() {
             </Routes>
           </Box>
 
-          {/* Footer */}
           <Box
             component="footer"
             textAlign="center"
             py={2}
             sx={{ backgroundColor: "#f5f5f5" }}
+            zIndex={1}
           >
             <Typography variant="caption">
               &copy; {new Date().getFullYear()} Career Navigator AI. All rights
